@@ -18,4 +18,9 @@ object PropertiesToObject {
       YamlToObject.jsonToClassInstance(json),
     )
   }
+
+  def applyJ(properties: java.util.List[String], types: java.util.Map[String, String]): Unit ={
+    import scala.collection.JavaConverters._
+    apply(properties.asScala.toList, types.asScala.toMap)
+  }
 }
