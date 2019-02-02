@@ -51,14 +51,14 @@ class PropertiesToObjectTest extends FunSuite {
         |AppPproperties(
         |aa = aa(
         |rr = rr(
-        | ff = "aaa"
-        |)
+        | ff = "aaa",
+        |),
         |bb = bb(
-        |dd = "aaa"
-        |cc = 123
-        |mm = "zzz"
-        |)
-        |)
+        |dd = "aaa",
+        |cc = 123,
+        |mm = "zzz",
+        |),
+        |),
         |)
       |""".stripMargin.replace("\n", "").replace(" ", ""))
   }

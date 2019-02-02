@@ -42,7 +42,7 @@ object YamlToObject {
           .foldLeft(s"$className(")({
             case (classInstantiate, (propName, propJson)) =>
               val propInstantiate = jsonToClassInstance(propJson, propName)
-              s"$classInstantiate \n$propName = $propInstantiate\n"
+              s"$classInstantiate \n$propName = $propInstantiate,\n"
           }) + ")"
       case s: JString => s""""${s.value}""""
       case n: JNumber => s"""${n.value}"""
