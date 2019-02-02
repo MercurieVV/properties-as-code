@@ -30,7 +30,7 @@ object YamlToObject {
       .filter(_._2.isInstanceOf[JObject])
       .foldLeft("")({
         case (classCreate, (propName, propJson)) =>
-          jsonToClass(propJson.asInstanceOf[JObject], propName, types)
+          classCreate + jsonToClass(propJson.asInstanceOf[JObject], propName, types)
       })
     init + res + "\n"
   }

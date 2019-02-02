@@ -23,28 +23,36 @@ class PropertiesToObjectTest extends FunSuite {
       List(
         "aa.bb.cc=123",
         "aa.bb.dd=aaa",
+        "aa.rr.ff=aaa",
       ),
       Map("cc" -> "Double")
     )
-    assert(tuple._1.replace("\n", "") ==
+    assert(tuple._1.replace("\n", "").replace(" ", "") ==
       """
         |case class AppPproperties(
         | aa: aa
         |)
         |case class aa(
+        | rr: rr,
         | bb: bb
+        |)
+        |case class rr(
+        | ff:String
         |)
         |case class bb(
         | dd: String,
-        |cc: Double,
-        |mm: String
+        | cc: Double,
+        | mm: String
         |)
-        |""".stripMargin.replace("\n", ""))
+        |""".stripMargin.replace("\n", "").replace(" ", ""))
 
     assert(tuple._2.replace("\n", "").replace(" ", "") ==
       """
         |AppPproperties(
         |aa = aa(
+        |rr = rr(
+        | ff = "aaa"
+        |)
         |bb = bb(
         |dd = "aaa"
         |cc = 123
@@ -54,5 +62,26 @@ class PropertiesToObjectTest extends FunSuite {
         |)
       |""".stripMargin.replace("\n", "").replace(" ", ""))
   }
+
+  case class AppPproperties(
+                             aa: aa
+                           )
+  case class aa(
+                 rr: rr,
+                 bb: bb
+               )
+  case class rr(
+                 ff: String
+               )
+
+  case class bb(
+                 dd: String,
+                 cc: Double,
+                 mm: String
+               )
+
+
+
+
 
 }
