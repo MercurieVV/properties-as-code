@@ -19,7 +19,7 @@ object PropertiesToObject {
     )
   }
 
-  def applyJ(rootClassName: String, properties: java.util.List[String], types: java.util.Map[String, String]): Unit ={
+  def applyJ(rootClassName: String, properties: java.util.List[String], types: java.util.Map[String, String]): (String, String) ={
     import scala.collection.JavaConverters._
     apply(rootClassName, properties.asScala.toList, types.asScala.toMap)
   }
