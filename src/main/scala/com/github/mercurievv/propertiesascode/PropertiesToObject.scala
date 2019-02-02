@@ -14,7 +14,7 @@ object PropertiesToObject {
     val json = PropertyToYamlTransformer(properties.map(_.split('=')).map{case Array(a: String,b : String) => (a,b)}.toMap)
 //    GetTypesFromYaml.yamlCommentsToType()
     (
-      YamlToObject.jsonToClass(json, rootClassName, types = types),
+      YamlToObject.jsonToClass(json, rootClassName, types),
       YamlToObject.jsonToClassInstance(json, rootClassName),
     )
   }
