@@ -15,6 +15,12 @@ class PropertiesToObjectTest extends FunSuite {
     val tuple = PropertiesToObject(
       "AppPproperties",
       List(
+        """
+          |aa:
+          |  bb:
+          |    mm: zzz
+        """.stripMargin),
+      List(
         "aa.bb.cc=123",
         "aa.bb.dd=aaa",
       ),
@@ -30,7 +36,8 @@ class PropertiesToObjectTest extends FunSuite {
         |)
         |case class bb(
         | dd: String,
-        |cc: Double
+        |cc: Double,
+        |mm: String
         |)
         |""".stripMargin.replace("\n", ""))
 
@@ -41,6 +48,7 @@ class PropertiesToObjectTest extends FunSuite {
         |bb = bb(
         |dd = "aaa"
         |cc = 123
+        |mm = "zzz"
         |)
         |)
         |)
