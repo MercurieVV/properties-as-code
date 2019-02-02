@@ -10,17 +10,17 @@ import io.circe.YamlToObject
   * Contacts: email: mercurievvss@gmail.com Skype: 'grobokopytoff' or 'mercurievv'
   */
 object PropertiesToObject {
-  def apply(properties: List[String], types: Map[String, String]): (String, String) = {
+  def apply(rootClassName: String, properties: List[String], types: Map[String, String]): (String, String) = {
     val json = PropertyToYamlTransformer(properties.map(_.split('=')).map{case Array(a: String,b : String) => (a,b)}.toMap)
 //    GetTypesFromYaml.yamlCommentsToType()
     (
-      YamlToObject.jsonToClass(json, types = types),
-      YamlToObject.jsonToClassInstance(json),
+      YamlToObject.jsonToClass(json, rootClassName, types = types),
+      YamlToObject.jsonToClassInstance(json, rootClassName),
     )
   }
 
-  def applyJ(properties: java.util.List[String], types: java.util.Map[String, String]): Unit ={
+  def applyJ(rootClassName: String, properties: java.util.List[String], types: java.util.Map[String, String]): Unit ={
     import scala.collection.JavaConverters._
-    apply(properties.asScala.toList, types.asScala.toMap)
+    apply(rootClassName, properties.asScala.toList, types.asScala.toMap)
   }
 }
