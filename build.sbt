@@ -13,7 +13,6 @@ resolvers += Resolver.bintrayRepo("beyondthelines", "maven")
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 //libraryDependencies += "com.chuusai" %% "shapeless" % "2.3.3"
 //libraryDependencies += "io.spray" % "spray-json_2.12" % "1.3.5"
-libraryDependencies += "beyondthelines" %% "fluent" % "0.0.7"
 libraryDependencies += "io.circe" %% "circe-core" % "0.9.3"
 libraryDependencies += "io.circe" %% "circe-generic" % "0.9.3"
 libraryDependencies += "io.circe" %% "circe-parser" % "0.9.3"
