@@ -19,7 +19,7 @@ object PropertiesToObject {
       .foldRight(Json.obj())((j1: Json, j2: Json) => j1.deepMerge(j2))
     (
       YamlToObject.jsonToClass(json, rootClassName, types),
-      YamlToObject.jsonToClassInstance(json, rootClassName),
+      YamlToObject.jsonToClassInstance(json, rootClassName, types),
     )
   }
 

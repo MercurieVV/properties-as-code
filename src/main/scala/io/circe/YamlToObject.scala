@@ -35,13 +35,13 @@ object YamlToObject {
     init + res + "\n"
   }
 
-  def jsonToClassInstance(json: Json, className: String = "AppPproperties"): String = {
+  def jsonToClassInstance(json: Json, className: String = "AppPproperties", types: Map[String, String]): String = {
     json match {
       case o: JObject =>
         o.value.toMap
-          .foldLeft(s"$className(")({
+          .foldLeft(types.getOrElse(className, className) + "(")({
             case (classInstantiate, (propName, propJson)) =>
-              val propInstantiate = jsonToClassInstance(propJson, propName)
+              val propInstantiate = jsonToClassInstance(propJson, propName, types)
               s"$classInstantiate \n$propName = $propInstantiate,\n"
           }) + ")"
       case s: JString => s""""${s.value}""""
