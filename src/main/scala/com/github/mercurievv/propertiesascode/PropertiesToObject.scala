@@ -1,11 +1,7 @@
 package com.github.mercurievv.propertiesascode
 
-import io.circe.yaml._
-import io.circe.yaml.syntax._
 import io.circe.YamlToObject
 import io.circe._
-import io.circe.yaml._
-import java.io
 
 /**
   * Created with IntelliJ IDEA.
@@ -32,7 +28,7 @@ object PropertiesToObject {
 
   def mergeIntoSingleYamlJ(yamls: java.util.List[String], properties: java.util.Map[String, String]): String = {
     import scala.collection.JavaConverters._
-    mergeIntoSingleYaml(yamls.asScala.toList, properties.asScala.toMap).asYaml.spaces2
+    Utils.jsonToYamlString(mergeIntoSingleYaml(yamls.asScala.toList, properties.asScala.toMap))
   }
 
   def applyJ(rootClassName: String, yamls: java.util.List[String], properties: java.util.Map[String, String], types: java.util.Map[String, String]): (String, String) = {
