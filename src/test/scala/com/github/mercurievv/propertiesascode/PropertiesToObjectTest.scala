@@ -20,10 +20,10 @@ class PropertiesToObjectTest extends FunSuite {
           |  bb:
           |    mm: zzz
         """.stripMargin),
-      List(
-        "aa.bb.cc=123",
-        "aa.bb.dd=aaa",
-        "aa.rr.ff=aaa",
+      Map(
+        "aa.bb.cc" -> "123",
+        "aa.bb.dd" -> "aaa",
+        "aa.rr.ff" -> "aaa",
       ),
       Map(
         "cc" -> "Double",
@@ -63,16 +63,18 @@ class PropertiesToObjectTest extends FunSuite {
         |),
         |),
         |)
-      |""".stripMargin.replace("\n", "").replace(" ", ""))
+        |""".stripMargin.replace("\n", "").replace(" ", ""))
   }
 
   case class AppPproperties(
                              aa: aa
                            )
+
   case class aa(
                  rr: rr,
                  bb: bb
                )
+
   case class rr(
                  ff: String
                )
@@ -82,9 +84,6 @@ class PropertiesToObjectTest extends FunSuite {
                  cc: Double,
                  mm: String
                )
-
-
-
 
 
 }

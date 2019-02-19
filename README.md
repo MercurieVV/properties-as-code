@@ -6,11 +6,22 @@ Generate classes and its instances from property files (yaml currently)
 For example you input
 ```scala
     val tuple = PropertiesToObject(
+      "AppPproperties",
       List(
-        "aa.bb.cc=123",
-        "aa.bb.dd=aaa",
+        """
+          |aa:
+          |  bb:
+          |    mm: zzz
+        """.stripMargin),
+      Map(
+        "aa.bb.cc" -> "123",
+        "aa.bb.dd" -> "aaa",
+        "aa.rr.ff" -> "aaa",
       ),
-      Map("cc" -> "Double")
+      Map(
+        "cc" -> "Double",
+        "rr" -> "rr2",
+      )
     )
 ```
 
@@ -21,20 +32,30 @@ case class AppPproperties(
  aa: aa
 )
 case class aa(
+ rr: rr2,
  bb: bb
+)
+case class rr(
+ ff:String
 )
 case class bb(
  dd: String,
-cc: Double
+ cc: Double,
+ mm: String
 )
 ```
 and ist inits:
 ```scala
 AppPproperties(
-  aa = aa(
-  bb = bb(
-    dd = "aaa")
-    cc = 123)
-  )
+    aa = aa(
+        rr = rr2(
+         ff = "aaa",
+        ),
+        bb = bb(
+            dd = "aaa",
+            cc = 123,
+            mm = "zzz",
+        ),
+    ),
 )
 ```
