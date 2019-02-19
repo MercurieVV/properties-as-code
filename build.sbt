@@ -16,7 +16,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 libraryDependencies += "io.circe" %% "circe-core" % "0.9.3"
 libraryDependencies += "io.circe" %% "circe-generic" % "0.9.3"
 libraryDependencies += "io.circe" %% "circe-parser" % "0.9.3"
-libraryDependencies += "io.circe" %% "circe-yaml" % "0.6.1"
+libraryDependencies += "io.circe" %% "circe-yaml" % "0.8.0"
 
 // for debugging sbt problems
 logLevel := Level.Debug
