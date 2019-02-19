@@ -30,7 +30,7 @@ object PropertiesToObject {
     json
   }
 
-  def mergeIntoSingleYamlJ(yamls: java.util.List[String], properties: java.util.Map[String, String]) = {
+  def mergeIntoSingleYamlJ(yamls: java.util.List[String], properties: java.util.Map[String, String]): String = {
     import scala.collection.JavaConverters._
     mergeIntoSingleYaml(yamls.asScala.toList, properties.asScala.toMap).asYaml.spaces2
   }
