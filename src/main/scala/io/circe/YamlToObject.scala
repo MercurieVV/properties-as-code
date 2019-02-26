@@ -24,7 +24,7 @@ object YamlToObject {
   def jsonToClass(json: Json, name: String = "AppPproperties", types: Map[String, String] = Map.empty): String = {
     val o = json.asInstanceOf[JObject]
     val objectProps = o.value.toMap
-    val objPropsStr = objectProps.map { case (propName, jsonValue) => s"$propName: ${getTypeName(propName, jsonValue, types)}" }.mkString(",\n")
+    val objPropsStr = objectProps.map { case (propName, jsonValue) => s"`$propName`: ${getTypeName(propName, jsonValue, types)}" }.mkString(",\n")
     val init = s"case class $name(\n $objPropsStr\n)\n"
     val res = objectProps
       .filter(_._2.isInstanceOf[JObject])
@@ -42,7 +42,7 @@ object YamlToObject {
           .foldLeft(types.getOrElse(className, className) + "(")({
             case (classInstantiate, (propName, propJson)) =>
               val propInstantiate = jsonToClassInstance(propJson, propName, types)
-              s"$classInstantiate \n$propName = $propInstantiate,\n"
+              s"$classInstantiate \n`$propName` = $propInstantiate,\n"
           }) + ")"
       case s: JString => s""""${s.value}""""
       case n: JNumber => s"""${n.value}"""

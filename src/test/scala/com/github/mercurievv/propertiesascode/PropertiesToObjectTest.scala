@@ -66,24 +66,22 @@ class PropertiesToObjectTest extends FunSuite {
         |""".stripMargin.replace("\n", "").replace(" ", ""))
   }
 
-  case class AppPproperties(
-                             aa: aa
-                           )
 
-  case class aa(
-                 rr: rr,
-                 bb: bb
-               )
-
-  case class rr(
-                 ff: String
-               )
-
-  case class bb(
-                 dd: String,
-                 cc: Double,
-                 mm: String
-               )
-
-
+  test("mergeIntoSingleYaml"){
+    import scala.collection.JavaConverters._
+    val yaml = PropertiesToObject.mergeIntoSingleYamlJ(
+      List(
+        """
+          |aa:
+          |  bb:
+          |    mm: zzz
+        """.stripMargin).asJava,
+      Map(
+        "aa.bb.cc" -> "123",
+        "aa.bb.dd" -> "aaa",
+        "aa.rr.ff" -> "aaa",
+      ).asJava,
+    )
+    println(yaml)
+  }
 }
