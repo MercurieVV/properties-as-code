@@ -25,7 +25,7 @@ object YamlToObject {
     val o = json.asInstanceOf[JObject]
     val objectProps = o.value.toMap
     val objPropsStr = objectProps.map { case (propName, jsonValue) => s"`$propName`: ${getTypeName(propName, jsonValue, types)}" }.mkString(",\n")
-    val init = s"case class $name(\n $objPropsStr\n)\n"
+    val init = s"case class `$name`(\n $objPropsStr\n)\n"
     val res = objectProps
       .filter(_._2.isInstanceOf[JObject])
       .foldLeft("")({
