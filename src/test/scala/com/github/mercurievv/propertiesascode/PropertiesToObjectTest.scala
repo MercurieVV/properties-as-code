@@ -19,6 +19,7 @@ class PropertiesToObjectTest extends FunSuite {
           |aa:
           |  bb:
           |    mm: zzz
+          |    ll: true
         """.stripMargin),
       Map(
         "aa.bb.cc" -> "123",
@@ -30,7 +31,7 @@ class PropertiesToObjectTest extends FunSuite {
         "rr" -> "rr2",
       )
     )
-    assert(tuple._1.replace("\n", "").replace(" ", "") ==
+    assert(tuple._1.replace("\n", "").replace(" ", "").replace("`", "") ==
       """
         |case class AppPproperties(
         | aa: aa
@@ -45,11 +46,12 @@ class PropertiesToObjectTest extends FunSuite {
         |case class bb(
         | dd: String,
         | cc: Double,
-        | mm: String
+        | mm: String,
+        | ll: Boolean
         |)
         |""".stripMargin.replace("\n", "").replace(" ", ""))
 
-    assert(tuple._2.replace("\n", "").replace(" ", "") ==
+    assert(tuple._2.replace("\n", "").replace(" ", "").replace("`", "") ==
       """
         |AppPproperties(
         |aa = aa(
@@ -60,6 +62,7 @@ class PropertiesToObjectTest extends FunSuite {
         |dd = "aaa",
         |cc = 123,
         |mm = "zzz",
+        |ll = true,
         |),
         |),
         |)

@@ -46,6 +46,7 @@ object YamlToObject {
           }) + ")"
       case s: JString => s""""${s.value}""""
       case n: JNumber => s"""${n.value}"""
+      case n: JBoolean => s"""${n.value}"""
     }
   }
 }
